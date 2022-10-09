@@ -170,3 +170,51 @@ a= np.arange(10,26).reshape(4,4)
 print(a)
 
 
+x =np.diag([1,2,3,4,5])
+print(x)
+
+
+x = np.array([[0,1],[2,3]])
+print(x)
+print(np.sum(x))
+print(np.sum(x , axis=0))
+print(np.sum(x, axis=1))
+
+
+nums = np.array([[3,2,np.nan,1],
+                 [10,12,10,9],
+                 [5,np.nan,1,np.nan]])
+print(nums)
+print(np.isnan(nums))
+
+
+nums = np.array([[5.54,3.38,7.99],
+                 [3.34,4.38,6.99],
+                 [1.54,2.39,9.29]])
+print(nums)
+print(np.sort(nums))
+print(np.sort(nums,axis=0))
+
+
+
+nums = np.array([[5.54,3.38,7.99],
+                 [3.34,4.38,6.99],
+                 [1.54,2.39,9.29]])
+print(nums)
+n = 5
+print('\nElements of the said array greater then',n , "<")
+print(nums[nums>n])
+n = 6
+print('\nElements of the said array less then',n, ">")
+print(nums[nums<n])
+
+
+nums = np.array([[5.54,3.38,7.99],
+                 [3.34,8.32,6.99],
+                 [1.54,2.39,9.29]])
+print("orginal array ")
+print(nums)
+n = 8.32
+r = 18.32
+print(np.where(nums == n, r, nums))
+
