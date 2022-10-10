@@ -1,2 +1,2 @@
-# I.A-Tutorial
-I.A of Class 
+# A.I-Tutorial
+A.I of Class 
