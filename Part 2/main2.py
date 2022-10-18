@@ -105,3 +105,62 @@ print(my_df)
 
 my_df.reset_index(drop=True,inplace=True)
 print(my_df)
+
+
+print("#############")
+#my_df.drop('col4',axis=1,inplace=True)
+#print(my_df)
+##
+#my_df.drop('row3',axis=0,inplace=True)
+#print(my_df)
+
+my_df.rename(columns={'col1':'test1','col4':'test4'},inplace=True)
+print(my_df)
+
+
+
+print('############')
+my_arrayy=np.array([[0,1,5],[2,5,0]])
+my_df=pd.DataFrame(my_arrayy)
+my_df.replace({0:1},inplace=True)
+print(my_df)
+
+
+print("##########")
+my_df.col1=0
+print(my_df)
+
+
+print('###########')
+my_df['col1']=my_df['col1'].apply(lambda x:x+1)
+print(my_df)
+
+
+
+print("#############")
+my_df.loc[:,'col1':'col2']=my_df.loc[:,'col1':'col2'].apply(lambda x:x+1)
+print(my_df)
+my_df.loc[:,'row2':'row3']=my_df.loc[:,'row2':'row3'].apply(lambda x:x+1)
+print(my_df)
+
+my_df=my_df.apply(lambda x:x+1)
+print(my_df)
+
+
+
+my_df.sort_index(axis=1,ascending=False,inplace=True)
+print(my_df)
+
+
+
+my_df.sort_values(by='col1',ascending=False,inplace=True)
+print(my_df)
+
+
+
+print(my_df.tail(2))
+
+
+
+data=pd.read_csv('')
+print(data)
