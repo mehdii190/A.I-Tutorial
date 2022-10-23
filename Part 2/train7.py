@@ -6,12 +6,12 @@ def enter():
     while True:
         list = []
         while True:
-            numbers = input('enter your num: end')
+            numbers = input('enter your num: end : ')
             if numbers == 'end':
                 break
             list.append(numbers)
         numlist.append(list)
-        choice = input('enter your choice: ')
+        choice = input('enter end : ')
         if choice == 'end':
             break
     a = np.array(numlist,dtype=int)
