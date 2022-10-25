@@ -8,3 +8,5 @@ print("###################")
 arr = ar[:2, 2:], ar[1:2, :2]
 neg = np.negative(arr)
 print(neg)
+
+#x[((x>3)&(x<8))]

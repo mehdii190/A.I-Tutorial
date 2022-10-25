@@ -17,3 +17,8 @@ df2=df.loc[:,'attempts']
 for i in df2:
     if i > 2:
         print(i)
+
+##or
+
+df3 = df[df['attempts'] > 2]
+print(df3)
