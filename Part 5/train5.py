@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-df = pd.read_csv("C:/Users/persian computer/Desktop/website/I.A-Tutorial/smartphones.csv")
+df = pd.read_csv("/Users/mehdimirawa/Desktop/video IA/smartphones.csv")
 
 
 def plot_box(df1, ft):
