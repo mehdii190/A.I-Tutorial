@@ -35,7 +35,7 @@ iris_df['target']=iris.target
 
 ###########################
 
-knn = KNeighborsClassifier(n_neighbors=6,metric='minkowski',p=2)
+knn = KNeighborsClassifier(n_neighbors=6, metric='minkowski', p=2)
 x = iris.data
 y = iris.target
 #knn.fit(x,y)
