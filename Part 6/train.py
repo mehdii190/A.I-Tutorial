@@ -18,4 +18,4 @@ print(y_predict)
 print("################")
 for i in y_predict:
     if not i:
-        print(i,sep="\n")
+        print(i, sep="\n")
