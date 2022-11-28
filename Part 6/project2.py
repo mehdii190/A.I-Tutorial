@@ -5,15 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import tkinter as tk
 
 ##################
-root = tk.Tk()
-root.title("check")
-root.geometry("500x320")
-root.maxsize(550, 350)
-root.minsize(450, 250)
-root.configure(bg='white')
-###################
 def search():
-    #global not_spam, its_spam, empty
     label2.configure(text="")
     data = pd.read_csv("C:/Users/persian computer/Desktop/website/I.A-Tutorial/spam.csv", encoding="latin-1")
     data = data.drop(["Unnamed: 2", "Unnamed: 3", "Unnamed: 4"], axis=1)
@@ -37,10 +29,16 @@ def search():
         else:
             label2.configure(text="ITS SPAM", fg="red")
             print("spam")
-
+##################
+root = tk.Tk()
+root.title("check")
+root.geometry("500x320")
+root.maxsize(550, 350)
+root.minsize(450, 250)
+root.configure(bg='white')
 
 #####################
-label1 = tk.Label(root, text="SPAM OR HAM", font=('Times', 20), fg="RED", background="black")
+label1 = tk.Label(root, text="ham or spam?", font=('Times', 20), fg="RED", background="black")
 label1.pack(pady=10)
 
 #####################
@@ -48,7 +46,7 @@ text = tk.Entry(root, width=40, borderwidth=10, bg="yellow", fg="black", font=('
 text.pack(pady=5)
 
 #####################
-button1 = tk.Button(root, text="CHECK", background="White", width=16, height=2, font=('Bold italic', 15), command=search)
+button1 = tk.Button(root, text="enter", background="White", width=16, height=2, font=('Bold italic', 15), command=search)
 button1.pack(pady=7)
 #####################
 label2 = tk.Label(root, font=('Arial', 20), background="black")
