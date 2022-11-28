@@ -23,11 +23,11 @@ def search():
     result = knn.predict(vec)
     for results in result:
         if results == "ham":
-            label2.configure(text="ITS HAM", fg="green")
+            label2.configure(text="its ham", fg="green")
             print("ham")
             return
         else:
-            label2.configure(text="ITS SPAM", fg="red")
+            label2.configure(text="its not ham , spam!!!", fg="red")
             print("spam")
 ##################
 root = tk.Tk()
