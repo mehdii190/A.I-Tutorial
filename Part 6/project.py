@@ -18,7 +18,6 @@ from tkinter import *
 from tkinter import messagebox ,Entry , Button ,Label
 import tkinter as tk
 
-
 ####################################
 
 ### dataSet ###
@@ -46,7 +45,7 @@ print(data.info())
 ###################################
 
 
-#nltk.download("punkt")
+nltk.download("punkt")
 
 
 ################## build ##########
@@ -101,7 +100,7 @@ print(data.info())
 #######################################
 
 
-#nltk.download("stopwords")
+nltk.download("stopwords")
 
 
 def text_process(text):
@@ -109,6 +108,7 @@ def text_process(text):
     text = [word for word in text.split() if word.lower() not in stopwords.words('english')]
 
     return " ".join(text)
+    
 
 
 data["text"] = data["text"].apply(text_process)
@@ -129,54 +129,58 @@ label = pd.DataFrame(data["label"])
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-vectorizar = TfidfVectorizer()
-vectors = vectorizar.fit_transform(data["text"])
+vectorizer = TfidfVectorizer()
+vectors = vectorizer.fit_transform(data["text"])
 features = vectors
 
 ######################
 
-df2 = pd.DataFrame(vectors.toarray(), columns=vectorizar.get_feature_names())
+df2 = pd.DataFrame(vectors.toarray(), columns=vectorizer.get_feature_names())
 df3 = df2.transpose()
+########################
+
+x_train, x_test, y_train, y_test = train_test_split(features, data["label"], test_size=0.15, random_state=111)
+
+########################
+
+knn = KNeighborsClassifier(n_neighbors=49)
+knn.fit(x_train,y_train)
+score=knn.score(x_test,y_test)
 
 ########################
 print("work")
 ############# TKinTer ################
 
-root = tk.Tk()
-#####
-root.title("My Spam")
-root.geometry("300x200")
-root.configure(bg='yellow')
-root.maxsize(300,200)
-#####
-
-########################
-lb1 = Label(root,font=24 , text="text")
-lb2 = Label(root,font=24 , text="search")
-
-
-lb1.grid(row = 0, column = 1,pady=30)
-lb2.grid(row = 1, column = 1,padx=50,pady=50)
 #########################
-def search():
-    inp = inp1.get()
+def spam():
     
-    if str(data[data['label']=='spam'].text) in inp:
-        print("its spam")
+    #lst=[]
+    #find=input("email contents? ")
+    #lst.append(find)
+    lst = enter.get()
+    vec=vectorizer.transform(lst)
+    result=knn.predict(vec)
+    print(result)
+    
+    s = [str(i) for i in result]
+    a = int("".join(s))
+
+    # show out the final result
+    if a == "spam":
         messagebox.showinfo("its spam")
-    elif str(data[data['label']=='ham'].text) in inp:
-        print("its not spam, ok!")
-        messagebox.showinfo("its not spam , ok !")
+        print("spam")
+    else:
+        messagebox.showerror("its not spam")
+        print("not spam")
+    
+root = tk.Tk()
+root.title('spam')
+root.geometry('400x200')
 
-bt1 = Button(root , font=24 , text="enter",command=search)
-
-bt1.grid(row=1 , column=2)
-#########################
-inp1 = Entry(root , width=20)
-
-inp1.grid(row=0,column=2)
-#########################
-
-
-
+head = Label(root, text='SPAM  Checker',font=('helvetica', 24 , 'bold'))
+head.pack()
+enter = Entry(root, width=400,borderwidth=5)
+enter.pack()
+b = Button(root, text = 'Check', font=('helvetica', 20 , 'bold'), fg = 'white', bg = 'blue', command = spam)
+b.pack()
 root.mainloop()
