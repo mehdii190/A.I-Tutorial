@@ -14,12 +14,16 @@ import sklearn
 import csv
 from wordcloud import WordCloud
 import pickle
+from tkinter import *
+from tkinter import messagebox ,Entry , Button ,Label
+import tkinter as tk
+
 
 ####################################
 
 ### dataSet ###
 
-data = pd.read_csv('/Users/mehdimirawa/Desktop/video IA/spam.csv', encoding='latin-1')
+data = pd.read_csv("C:/Users/persian computer/Desktop/website/I.A-Tutorial/spam.csv", encoding='latin-1')
 # print(data.shape)
 # print(data.info())
 
@@ -42,7 +46,7 @@ print(data.info())
 ###################################
 
 
-# nltk.download("punkt")
+#nltk.download("punkt")
 
 
 ################## build ##########
@@ -97,7 +101,7 @@ print(data.info())
 #######################################
 
 
-# nltk.download("stopwords")
+#nltk.download("stopwords")
 
 
 def text_process(text):
@@ -134,5 +138,45 @@ features = vectors
 df2 = pd.DataFrame(vectors.toarray(), columns=vectorizar.get_feature_names())
 df3 = df2.transpose()
 
+########################
+print("work")
+############# TKinTer ################
+
+root = tk.Tk()
+#####
+root.title("My Spam")
+root.geometry("300x200")
+root.configure(bg='yellow')
+root.maxsize(300,200)
+#####
+
+########################
+lb1 = Label(root,font=24 , text="text")
+lb2 = Label(root,font=24 , text="search")
 
 
+lb1.grid(row = 0, column = 1,pady=30)
+lb2.grid(row = 1, column = 1,padx=50,pady=50)
+#########################
+def search():
+    inp = inp1.get()
+    
+    if str(data[data['label']=='spam'].text) in inp:
+        print("its spam")
+        messagebox.showinfo("its spam")
+    elif str(data[data['label']=='ham'].text) in inp:
+        print("its not spam, ok!")
+        messagebox.showinfo("its not spam , ok !")
+
+bt1 = Button(root , font=24 , text="enter",command=search)
+
+bt1.grid(row=1 , column=2)
+#########################
+inp1 = Entry(root , width=20)
+
+inp1.grid(row=0,column=2)
+#########################
+
+
+
+root.mainloop()
