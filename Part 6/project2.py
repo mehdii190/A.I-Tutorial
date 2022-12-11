@@ -7,9 +7,10 @@ import tkinter as tk
 ##################
 def search():
     label2.configure(text="")
-    data = pd.read_csv("C:/Users/persian computer/Desktop/website/I.A-Tutorial/spam.csv", encoding="latin-1")
+    data = pd.read_csv("/Users/mehdimirawa/Desktop/video IA/spam.csv", encoding="latin-1")
     data = data.drop(["Unnamed: 2", "Unnamed: 3", "Unnamed: 4"], axis=1)
     data = data.rename(columns={"v2": "text", "v1": "label"})
+    #####################
     vectorizer = TfidfVectorizer()
     vectors = vectorizer.fit_transform(data['text'])
     features = vectors
