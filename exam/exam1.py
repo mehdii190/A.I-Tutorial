@@ -7,8 +7,8 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import cross_val_score
 import seaborn as sb
 
-sl1 = pd.read_csv("I:/video I.A/exam/salary_data_first.csv")
-sl2 = pd.read_csv("I:/video I.A/exam/salary_data_second.csv")
+sl1 = pd.read_csv("/Users/mehdimirawa/Desktop/video IA/exam/salary_data_first.csv")
+sl2 = pd.read_csv("/Users/mehdimirawa/Desktop/video IA/exam/salary_data_second.csv")
 
 
 sl1.drop("pre",axis=1,inplace=True)
@@ -71,10 +71,10 @@ print("mean score: ",np.mean(df_scores))
 
 ###############################
 
-new_df.boxplot(column=["Salary"])
+sb.boxplot(y=x)
 plt.show()
 
-print(new_df['Salary'].describe())
+print(new_df["Salary"].describe())
 
 
 uppper_boundary=new_df['Salary'].mean() + 3* new_df['Salary'].std()
@@ -83,7 +83,7 @@ print("lower : ",lower_boundary), print("upper : ",uppper_boundary),print("mean 
 
 ################################
 
-new_df.boxplot(column=["YearsExperience"])
+sb.boxplot(y=y)
 plt.show()
 
 print(new_df['YearsExperience'].describe())
