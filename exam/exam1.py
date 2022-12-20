@@ -91,7 +91,9 @@ print(new_df['YearsExperience'].describe())
 
 uppper_boundary=new_df['YearsExperience'].mean() + 3* new_df['YearsExperience'].std()
 lower_boundary=new_df['YearsExperience'].mean() - 3* new_df['YearsExperience'].std()
-print("lower : ",lower_boundary), print("upper : ",uppper_boundary),print("mean : ",new_df['YearsExperience'].mean())
+print("lower : ",lower_boundary)
+print("upper : ",uppper_boundary)
+print("mean : ",new_df['YearsExperience'].mean())
 
 
 
