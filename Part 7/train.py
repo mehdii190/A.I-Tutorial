@@ -32,6 +32,7 @@ for i in range(nn):
 print(cov)
 ########## or cov np
 cov2 = np.cov(X,Y, ddof=1)
+cov2=cov2[0, 1]
 ########## b ######
 b = cov / var
 ########## a #######

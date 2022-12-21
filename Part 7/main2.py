@@ -67,10 +67,10 @@ print("**** MSE: ",mse,"****")
 
 
 reg = LinearRegression()
-#cv_scores = cross_val_score(reg, x , y, scoring="r2",cv=5)
-cv_scores2 = cross_val_score(reg, x,y, scoring="neg_mean_squared_error",cv=5)
-print(cv_scores2)
-print(np.mean(cv_scores2))
+cv_scores = cross_val_score(reg, x , y, scoring="r2",cv=5)
+#cv_scores2 = cross_val_score(reg, x,y, scoring="neg_mean_squared_error",cv=5)
+print(cv_scores)
+print(np.mean(cv_scores))
 
 
 
