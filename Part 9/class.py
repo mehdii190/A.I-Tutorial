@@ -106,7 +106,7 @@ class Draw():
             #print(x1)
             y1= y + self.background.winfo_height()
             #print(y1)
-            ImageGrab.grab().crop((x , y, x1, y1)).save("test.png")
+            ImageGrab.grab().crop((x+200 , y+200, x1+200, y1+200)).save("test.png")
 #            messagebox.showinfo('Screenshot Successfully Saved as' + str(file_ss))
 
         except:
