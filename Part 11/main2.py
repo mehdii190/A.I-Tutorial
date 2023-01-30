@@ -80,7 +80,20 @@ plt.show()
 
 
 
+############
 
+
+x=0
+xx=(data.columns.values)
+for i in range(len(xx)-1):
+    table=pd.crosstab(data.iloc[:,x],data.y)
+    z=table.div(table.sum(1).astype(float),axis=0)
+    table.div(table.sum(1).astype(float),axis=0).plot(kind="bar",stacked=True)
+    plt.title("Stacked Bar Chart Of Marital Status vs Purchase")
+    plt.xlabel("Marital Status")
+    plt.ylabel("Proportion")
+    plt.show()
+    x=x+1
 
 
 
