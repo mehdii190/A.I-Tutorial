@@ -83,31 +83,94 @@ plt.show()
 ############
 
 
-x=0
-xx=(data.columns.values)
-for i in range(len(xx)-1):
-    table=pd.crosstab(data.iloc[:,x],data.y)
-    z=table.div(table.sum(1).astype(float),axis=0)
-    table.div(table.sum(1).astype(float),axis=0).plot(kind="bar",stacked=True)
-    plt.title("Stacked Bar Chart Of Marital Status vs Purchase")
-    plt.xlabel("Marital Status")
-    plt.ylabel("Proportion")
-    plt.show()
-    x=x+1
+#x=0
+
+#xx=(data.columns.values)
+
+#for i in range(len(xx)-1):
+    
+    
+ #   table=pd.crosstab(data.iloc[:,x],data.y)
+  #  z=table.div(table.sum(1).astype(float),axis=0)
+    
+  #  table.div(table.sum(1).astype(float),axis=0).plot(kind="bar",stacked=True)
+  #  plt.title("Stacked Bar Chart Of Marital Status vs Purchase")
+  #  plt.xlabel("Marital Status")
+  #  plt.ylabel("Proportion")
+  #  plt.show()
+    
+  #  x=x+1
+
+
+#########
+
+cat_vars = ["job","marital","education","default","housing","loan","contact","month","day_of_week","poutcome"]
+
+
+
+for var in cat_vars:
+    
+    cat_list = pd.get_dummies(data[var],prefix=var)
+    data1 = data.join(cat_list)
+    data=data1
+
+
+
+###############
+
+
+
+cat_vars = ["job","marital","education","default","housing","loan","contact","month","day_of_week","poutcome"]
+
+
+data_vars = data.columns.values.tolist()
+
+to_keep = [i for i in data_vars if i not in cat_vars]
+data_final=data[to_keep]
+temp=data_final.columns.values
+
+#####################
+
+
+X = data_final.loc[:,data_final.columns !="y"]
+y = data_final.loc[:,data_final.columns =="y"]
+
+
+from imblearn.over_sampling import SMOTE
+
+
+
+os = SMOTE(random_state=0)
+
+
+#####
+
+X_train , X_test , y_train , y_test = train_test_split(X,y,test_size=0.3,random_state=0)
+
+columns = X_train.columns
+os_data_X,os_data_y=os.fit_resample(X_train, y_train)
+
+######
+
+print(len(os_data_X))
+print(len(os_data_y[os_data_y["y"]==0]))
+print(len(os_data_y[os_data_y["y"]==1]))
+#print(len(os_data_y[os_data_y["y"]]))
 
 
 
 
 
+data_final_vars = data_final.columns.values.tolist()
+y=["y"]
+X = [i for i in data_final_vars if i not in y]
+from sklearn.feature_selection import RFE
 
-
-
-
-
-
-
-
-
+logreg = LogisticRegression()
+rfe = RFE(logreg, n_features_to_select=20)
+rfe = rfe.fit(os_data_X,os_data_y.values.ravel())
+print(rfe.support_)
+print(rfe.ranking_)
 
 
 
